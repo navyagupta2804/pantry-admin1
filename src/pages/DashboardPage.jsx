@@ -80,9 +80,10 @@ const DashboardPage = () => {
 
         // userType mapping: "student" -> "Student", "workingProfessional" -> "Working Professional"
         let userTypeValue = null;
-        if (userTypeFilter === "Student") userTypeValue = "Student";
-        if (userTypeFilter === "workingProfessional")
+        if ((userTypeFilter === "Student")) userTypeValue = "Student";
+        if ((userTypeFilter === "workingProfessional") )
           userTypeValue = "Working Professional";
+        if (userTypeFilter === "professional") userTypeValue = "Working Professional";
 
         if (userTypeValue) {
           constraints.push(where("userType", "==", userTypeValue));
