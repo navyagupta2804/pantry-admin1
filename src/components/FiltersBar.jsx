@@ -19,7 +19,7 @@ const FiltersBar = ({
         >
           <option value="all">All</option>
           <option value="student">Students</option>
-          <option value="workingProfessional">Working Professionals</option>
+          <option value="professional">Working Professionals</option>
         </select>
       </div>
 
