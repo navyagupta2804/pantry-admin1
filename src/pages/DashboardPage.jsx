@@ -28,6 +28,7 @@ function findBucket(ts, dayBuckets) {
 
 const DashboardPage = () => {
   const [userTypeFilter, setUserTypeFilter] = useState("all"); // "all" | "student" | "workingProfessional"
+  const [isAdminFilter, setIsAdminFilter] = useState("all");
   const [variantFilter, setVariantFilter] = useState("all");   // "all" | "A" | "B"
   const [dateRange, setDateRange] = useState("7d");            // "7d" | "30d"
 
@@ -88,7 +89,15 @@ const DashboardPage = () => {
         if (userTypeValue) {
           constraints.push(where("userType", "==", userTypeValue));
         }
+        // isadmin mapping "true"->isAdminTrue, "false" -> isAdminFalse
+        let isAdminValue = null;
+        if ((isAdminFilter === "true")) isAdminValue = "isAdminTrue";
+        if ((isAdminFilter === "false") )
+          isAdminValue = "isAdminFalse";
 
+        if (isAdminValue) {
+          constraints.push(where("Administrators", "==", isAdminValue));
+        }
         // abTestGroup mapping: "A" -> "Group A", "B" -> "Group B"
         let abGroupValue = null;
         if (variantFilter === "A") abGroupValue = "Group A";
@@ -159,7 +168,7 @@ const DashboardPage = () => {
     }
 
     fetchData();
-  }, [userTypeFilter, variantFilter, dateRange]);
+  }, [userTypeFilter, isAdminFilter, variantFilter, dateRange]);
 
   // ====== DERIVED METRICS (similar to RN dashboard) ======
   const {
@@ -293,6 +302,8 @@ const DashboardPage = () => {
       <FiltersBar
         userTypeFilter={userTypeFilter}
         setUserTypeFilter={setUserTypeFilter}
+        isAdminFilter={isAdminFilter}
+        setIsAdminFilter={setIsAdminFilter}
         variantFilter={variantFilter}
         setVariantFilter={setVariantFilter}
         dateRange={dateRange}

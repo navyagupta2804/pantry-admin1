@@ -6,6 +6,8 @@ const FiltersBar = ({
   setUserTypeFilter,
   variantFilter,
   setVariantFilter,
+  isAdminFilter,
+  setIsAdminFilter,
   dateRange,
   setDateRange,
 }) => {
@@ -32,6 +34,18 @@ const FiltersBar = ({
           <option value="all">All</option>
           <option value="A">Group A</option>
           <option value="B">Group B</option>
+        </select>
+      </div>
+
+      <div className="filter-group">
+        <label>Administrators</label>
+        <select
+          value={isAdminFilter}
+          onChange={(e) => setIsAdminFilter(e.target.value)}
+        >
+          <option value="all">All</option>
+          <option value="isAdminTrue">Admins only</option>
+          <option value="isAdminFalse">Exclude Admins</option>
         </select>
       </div>
 
